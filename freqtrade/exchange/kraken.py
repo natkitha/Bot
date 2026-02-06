@@ -158,11 +158,11 @@ class Kraken(Exchange):
         time_in_ratio: float | None = None,
     ) -> float:
         """
-        # ! This method will always error when run by Freqtrade because time_in_ratio is never
-        # ! passed to _get_funding_fee. For kraken futures to work in dry run and backtesting
-        # ! functionality must be added that passes the parameter time_in_ratio to
-        # ! _get_funding_fee when using Kraken
         calculates the sum of all funding fees that occurred for a pair during a futures trade
+
+        Kraken uses a ratio-adjusted funding calculation and therefore requires
+        `time_in_ratio` to be provided by the caller.
+
         :param df: Dataframe containing combined funding and mark rates
                    as `open_fund` and `open_mark`.
         :param amount: The quantity of the trade
